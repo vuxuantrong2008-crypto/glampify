@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Về Chúng Tôi - Glampify</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF5EC;
+  --bg-white:#FFFFFF;
+  --terracotta:#9A4C36;
+  --terracotta-dark:#7A3B29;
+  --accent:#FF6B35;
+  --cream:#FDFBF7;
+  --text:#4A332B;
+  padding-top: env(safe-area-inset-top,0px);
+  padding-bottom: env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+h1,h2,h3{font-family:'Playfair Display',serif;color:var(--terracotta);font-weight:700}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+section{padding:80px 0}
+.bg-white{background:var(--bg-white)}
+.section-kicker{color:var(--accent);font-weight:700;font-size:.95rem;display:block;margin-bottom:6px}
+.section-title{font-size:clamp(2rem,4vw,2.6rem);color:var(--terracotta-dark);line-height:1.15}
+.section-center{text-align:center;max-width:640px;margin:0 auto 48px}
+.ph{
+  background:linear-gradient(150deg,var(--terracotta) 0%,#c98a5c 55%,#8fae72 100%);
+  display:flex;align-items:center;justify-content:center;color:#fff;
+}
+.btn{border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-weight:700;cursor:pointer;transition:transform .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-solid{background:var(--accent);color:#fff;padding:16px 44px;font-size:1.05rem;box-shadow:0 8px 20px rgba(255,107,53,.35)}
+
+/* ---------- 1. HERO ---------- */
+/* ---------- 1. HERO (Chữ Trái - Ảnh Phải) ---------- */
+.hero-about {
+  padding: 60px 0;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.hero-copy .section-kicker {
+  margin-bottom: 8px;
+}
+.hero-copy h1 {
+  font-size: clamp(2.1rem, 4vw, 2.8rem);
+  line-height: 1.2;
+  margin-bottom: 18px;
+  color: var(--terracotta-dark);
+}
+.hero-copy p {
+  color: #8a6a58;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 520px;
+}
+.hero-img {
+  aspect-ratio: 4/3;
+  border-radius: 22px;
+  box-shadow: 0 16px 40px rgba(154, 76, 54, 0.18);
+}
+
+/* ---------- 2. BRAND STORY ---------- */
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.story-img{aspect-ratio:4/3;border-radius:22px;box-shadow:0 16px 40px rgba(154,76,54,.18)}
+.story-copy .section-kicker{margin-bottom:10px}
+.story-copy h2{font-size:clamp(1.8rem,3.4vw,2.4rem);margin-bottom:20px}
+.story-copy p{color:#8a6a58;line-height:1.75;margin-bottom:16px}
+
+/* ---------- 3. GIÁ TRỊ CỐT LÕI ---------- */
+/* ---------- 3. GIÁ TRỊ CỐT LÕI (GIỮ NỀN XEN KẼ & NỔI BẬT CARD) ---------- */
+.values-section {
+  background-color: var(--cream); /* Khôi phục nền Cream để đảm bảo nhịp xen kẽ Cream - White */
+  padding: 80px 0;
+}
+
+.values-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 56px;
+}
+
+.values-header .section-title {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 16px;
+}
+
+/* Đường gạch chân điểm nhấn */
+.values-header .section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.value-card {
+  background: #ffffff; /* Card TRẮNG nổi bật rõ rệt trên nền Cream */
+  border-radius: 20px;
+  padding: 36px 24px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(154, 76, 54, 0.08); /* Bóng đổ êm giúp card nổi lên */
+  border: 1px solid rgba(154, 76, 54, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.value-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(154, 76, 54, 0.16);
+  border-color: rgba(154, 76, 54, 0.2);
+}
+
+.value-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  background: rgba(154, 76, 54, 0.08); /* Nền icon màu cam đất nhạt dịu mắt */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-icon {
+  width: 28px;
+  height: 28px;
+  color: var(--terracotta);
+}
+
+.value-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 10px;
+  color: var(--terracotta-dark);
+  font-weight: 700;
+}
+
+.value-card p {
+  color: #7d5e4e;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* ---------- 4. QUY TRÌNH 4 BƯỚC ---------- */
+.step-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+.step{position:relative;padding:8px 6px 0}
+.step-num{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:800;color:var(--accent);opacity:.4;line-height:1;margin-bottom:14px}
+.step h3{font-size:1.08rem;margin-bottom:8px}
+.step p{color:#8a6a58;font-size:.92rem;line-height:1.6}
+
+/* ---------- 5. CTA BOX ---------- */
+.cta-box{
+  max-width:760px;margin:0 auto;text-align:center;background:var(--cream);border-radius:24px;
+  padding:64px 40px;box-shadow:0 16px 40px rgba(154,76,54,.14);
+}
+.cta-box h2{font-size:clamp(1.8rem,3.4vw,2.3rem);margin-bottom:16px}
+.cta-box p{color:#8a6a58;line-height:1.7;margin-bottom:28px;max-width:520px;margin-left:auto;margin-right:auto}
+
+/* ---------- FOOTER (giống hệt các trang khác) ---------- */
+footer{background:var(--terracotta-dark);color:#f5e9d8;padding:60px 0 28px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;margin-bottom:36px}
+.foot-brand{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.foot-brand svg{width:26px;height:26px;color:var(--accent)}
+.foot-logo{font-family:'Playfair Display',serif;font-weight:700;font-size:1.7rem;color:#fff}
+.foot-grid p,.foot-grid a{color:#f0dfc7;text-decoration:none;font-size:.94rem}
+.foot-grid h4{color:#fff;font-family:'Playfair Display',serif;margin-bottom:16px;font-size:1.15rem}
+.foot-links{list-style:none;display:flex;flex-direction:column;gap:11px}
+.foot-links a{transition:color .2s ease}
+.foot-links a:hover{color:#fff}
+.foot-bottom{text-align:center;font-size:.82rem;color:#d8bfa2;border-top:1px solid rgba(255,255,255,.15);padding-top:22px}
+
+.hero-img-wrap {
+  aspect-ratio: 4/3;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(154, 76, 54, 0.18);
+}
+.hero-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Giúp ảnh không bị méo hay bóp hình */
+  display: block;
+}
+.value-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 0 auto 18px;
+  background: var(--bg); /* Lấy màu nền nhẹ làm điểm nhấn */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.custom-icon {
+  width: 42px;
+  height: 42px;
+  color: var(--terracotta); /* Tự động đồng bộ sang màu nâu chủ đạo */
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:960px){
+  .hero-grid, .story-grid { grid-template-columns: 1fr; }
+  .story-img { order: -1; }
+  .value-grid { grid-template-columns: repeat(2, 1fr); }
+  .step-grid { grid-template-columns: repeat(2, 1fr); }
+  .foot-grid { grid-template-columns: 1fr; }
+}
+@media (max-width:600px){
+  section{padding:56px 0}
+  .value-grid{grid-template-columns:1fr}
+  .step-grid{grid-template-columns:1fr}
+  .cta-box{padding:48px 24px}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="icon-tent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 3 19h18L12 3Z"/><path d="M8.5 19 12 11l3.5 8"/></symbol>
+</svg>
+
+<!-- 1. HERO BANNER -->
+<section class="hero-about">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="section-kicker">Về Glampify</span>
+      <h1>Câu chuyện của Glampify</h1>
+      <p>Chúng tôi tin rằng ai cũng xứng đáng có một chuyến dã ngoại trọn vẹn, không cần lo lắng về việc chuẩn bị đồ đạc hay chi phí đầu tư ban đầu.</p>
+    </div>
+    
+    <!-- Thay khối div .ph cũ bằng thẻ img -->
+    <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1625834509314-3b12c6153624?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cắm trại cùng Glampify">
+    </div>
+  </div>
+</section>
+
+<!-- 2. CÂU CHUYỆN KHỞI NGUỒN -->
+<section class="bg-white">
+  <div class="wrap story-grid">
+    <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1475483768296-6163e08872a1?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cắm trại cùng Glampify">
+    </div>
+    <div class="story-copy">
+      <span class="section-kicker">Khởi nguồn</span>
+      <h2>Bắt đầu từ một chuyến đi không trọn vẹn</h2>
+      <p>Glampify ra đời từ một chuyến cắm trại cuối tuần năm 2023, khi cả nhóm bạn chúng tôi loay hoay vì thiếu đồ dùng và không biết bắt đầu từ đâu.</p>
+      <p>Từ trải nghiệm đó, chúng tôi quyết định xây dựng một dịch vụ cho thuê trọn bộ đồ dã ngoại, giúp mọi người dễ dàng tiếp cận với thiên nhiên mà không cần đầu tư quá nhiều.</p>
+      <p>Đến nay, Glampify đã đồng hành cùng hàng nghìn chuyến đi quanh Hà Nội, mang theo tinh thần "xách balo lên và đi" tới mọi khách hàng.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. GIÁ TRỊ CỐT LÕI -->
+<section class="values-section">
+  <div class="wrap">
+    <div class="values-header">
+      <span class="section-kicker">Điều chúng tôi theo đuổi</span>
+      <h2 class="section-title">Giá Trị Cốt Lõi</h2>
+    </div>
+    <div class="value-grid">
+      
+      <!-- Card 1: Tận Tâm -->
+      <div class="value-card">
+        <div class="value-icon">
+          <svg class="custom-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </div>
+        <h3>Tận Tâm</h3>
+        <p>Luôn lắng nghe và đồng hành cùng khách hàng trong mỗi hành trình.</p>
+      </div>
+
+      <!-- Card 2: Chất Lượng -->
+      <div class="value-card">
+        <div class="value-icon">
+          <svg class="custom-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+          </svg>
+        </div>
+        <h3>Chất Lượng</h3>
+        <p>Đồ dùng được kiểm tra kỹ lưỡng, đảm bảo an toàn và sạch sẽ.</p>
+      </div>
+
+      <!-- Card 3: Linh Hoạt -->
+      <div class="value-card">
+        <div class="value-icon">
+          <svg class="custom-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/>
+          </svg>
+        </div>
+        <h3>Linh Hoạt</h3>
+        <p>Dễ dàng đổi lịch, tùy chỉnh combo theo nhu cầu thực tế.</p>
+      </div>
+
+      <!-- Card 4: Bền Vững -->
+      <div class="value-card">
+        <div class="value-icon">
+          <svg class="custom-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.5 0 4-2 7.74-6.4 10.84-13.66L17 8zM5.5 19.5C7.2 15.5 10.5 11 18 9c-2 6-5.5 10-10.5 11.5-.66.2-1.33 0-2-.1z"/>
+          </svg>
+        </div>
+        <h3>Bền Vững</h3>
+        <p>Ưu tiên tái sử dụng thiết bị, giảm thiểu rác thải khi dã ngoại.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 4. QUY TRÌNH 4 BƯỚC -->
+<section class="bg-white">
+  <div class="wrap">
+    <div class="section-center">
+      <span class="section-kicker">Đơn giản, nhanh gọn</span>
+      <h2 class="section-title">Quy Trình 4 Bước</h2>
+    </div>
+    <div class="step-grid">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Chọn Combo</h3>
+        <p>Lựa chọn combo phù hợp với số người và nhu cầu chuyến đi.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Đặt Lịch</h3>
+        <p>Điền thông tin đăng ký, chọn ngày đi và địa điểm nhận đồ.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Nhận Đồ</h3>
+        <p>Nhận đồ tận nơi hoặc tại điểm giao nhận gần bạn nhất.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Tận Hưởng</h3>
+        <p>Xách balo lên và đi, tận hưởng trọn vẹn chuyến dã ngoại.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. CTA BOX -->
+<section>
+  <div class="wrap">
+    <div class="cta-box">
+      <h2>Sẵn sàng cho chuyến đi tiếp theo?</h2>
+      <p>Để Glampify lo phần chuẩn bị, bạn chỉ cần xách balo lên và tận hưởng thiên nhiên.</p>
+      <button class="btn btn-solid">Xem Combo Ngay</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><svg><use href="#icon-tent"/></svg><span class="foot-logo">Glampify</span></div>
+        <p>Mang đến trải nghiệm dã ngoại trọn vẹn và tinh tế nhất.</p>
+        <p style="margin-top:10px">79 Hồ Tùng Mậu, Hà Nội</p>
+        <p>www.glampify.com</p>
+        <p>support@glampify.com</p>
+      </div>
+      <div>
+        <h4>Chính Sách</h4>
+        <ul class="foot-links">
+          <li><a href="#">Chính sách đổi trả</a></li>
+          <li><a href="#">Chính sách bảo mật</a></li>
+          <li><a href="#">Chính sách vận chuyển</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hỗ Trợ</h4>
+        <ul class="foot-links">
+          <li><a href="#">Thuê đồ có cần cọc không?</a></li>
+          <li><a href="#">Trời mưa có được dời lịch?</a></li>
+          <li><a href="#">Hỗ trợ setup tại bãi</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 Glampify. All rights reserved.</div>
+  </div>
+</footer>
+
+</body>
+</html>

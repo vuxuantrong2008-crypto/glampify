@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thuê Box Dã Ngoại - Glampify</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF5EC;
+  --bg-white:#FFFFFF;
+  --terracotta:#9A4C36;
+  --terracotta-dark:#7A3B29;
+  --accent:#FF6B35;
+  --cream:#FDFBF7;
+  --text:#4A332B;
+  padding-top: env(safe-area-inset-top,0px);
+  padding-bottom: env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+h1,h2,h3{font-family:'Playfair Display',serif;color:var(--terracotta);font-weight:700}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+section{padding:72px 0}
+.bg-white{background:var(--bg-white)}
+.section-kicker{color:var(--accent);font-weight:700;font-size:.95rem;display:block;margin-bottom:6px}
+.section-title{font-size:clamp(2rem,4vw,2.6rem);color:var(--terracotta-dark);line-height:1.15}
+
+/* ---------- PAGE HERO (đồng bộ tông màu, không dùng ảnh nền) ---------- */
+.page-hero{
+  background:linear-gradient(150deg,var(--terracotta) 0%,#c98a5c 60%,#8fae72 100%);
+  padding:70px 24px 60px;text-align:center;color:#fff;
+}
+.page-hero .crumb{font-size:.9rem;color:#f6e6d6;font-weight:700;margin-bottom:14px;display:block}
+.page-hero .crumb a{color:#f6e6d6;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.5)}
+.page-hero h1{color:#fff;font-size:clamp(2.1rem,4.5vw,3rem);margin-bottom:12px}
+.page-hero p{color:#fbeee0;font-size:1.05rem;font-weight:600;max-width:560px;margin:0 auto}
+
+/* ---------- FILTER BAR ---------- */
+.filter-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:18px;margin-bottom:32px}
+.filter-pills{display:flex;flex-wrap:wrap;gap:10px}
+.pill{
+  border:1.5px solid #e3cdb2;background:#fff;color:var(--terracotta);font-family:'Nunito',sans-serif;
+  font-weight:700;font-size:.88rem;padding:10px 20px;border-radius:24px;cursor:pointer;transition:.2s ease;
+}
+.pill:hover{border-color:var(--accent);color:var(--accent)}
+.pill.active{background:var(--terracotta);border-color:var(--terracotta);color:#fff}
+.result-count{color:#8a6a58;font-size:.92rem;font-weight:600}
+
+/* ---------- PRODUCT GRID ---------- */
+.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+.card{
+  background:var(--cream);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;
+  box-shadow:0 10px 28px rgba(154,76,54,.13);transition:transform .3s ease,box-shadow .3s ease,opacity .25s ease;
+}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(154,76,54,.2)}
+.card.hide{display:none}
+.card-img{
+  position:relative;aspect-ratio:4/3;
+  background:linear-gradient(150deg,var(--terracotta) 0%,#c98a5c 55%,#8fae72 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.card-img svg{width:48px;height:48px;opacity:.85;color:#fff}
+.tag{position:absolute;top:14px;left:14px;background:var(--accent);color:#fff;font-size:.72rem;font-weight:700;padding:6px 13px;border-radius:20px}
+.tag.new{background:var(--terracotta)}
+.card-body{padding:20px 20px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card-body h3{font-size:1.1rem;line-height:1.3}
+.includes{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.72rem;background:#f3e3d2;color:var(--terracotta-dark);padding:4px 10px;border-radius:20px;font-weight:700}
+.price{color:var(--terracotta);font-weight:700;font-size:1.05rem;margin-top:2px}
+.price small{color:#a9887a;font-weight:600;font-size:.78rem}
+.btn{border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-weight:700;cursor:pointer;transition:transform .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-outline{margin-top:auto;background:transparent;border:1.5px solid var(--terracotta);color:var(--terracotta);padding:10px 0}
+.btn-outline:hover{background:var(--terracotta);color:#fff}
+
+/* ---------- CAM KẾT ---------- */
+.commit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.commit{background:var(--cream);border-radius:20px;padding:34px 28px;text-align:center;box-shadow:0 10px 26px rgba(154,76,54,.1)}
+.commit-icon{
+  width:60px;height:60px;border-radius:50%;background:var(--terracotta);color:#fff;display:flex;
+  align-items:center;justify-content:center;margin:0 auto 18px;
+}
+.commit-icon svg{width:28px;height:28px}
+.commit h3{font-size:1.15rem;margin-bottom:8px}
+.commit p{color:#8a6a58;font-size:.92rem;line-height:1.6}
+
+/* ---------- FOOTER (giống hệt trang chủ) ---------- */
+footer{background:var(--terracotta-dark);color:#f5e9d8;padding:60px 0 28px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;margin-bottom:36px}
+.foot-brand{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.foot-brand svg{width:26px;height:26px;color:var(--accent)}
+.foot-logo{font-family:'Playfair Display',serif;font-weight:700;font-size:1.7rem;color:#fff}
+.foot-grid p,.foot-grid a{color:#f0dfc7;text-decoration:none;font-size:.94rem}
+.foot-grid h4{color:#fff;font-family:'Playfair Display',serif;margin-bottom:16px;font-size:1.15rem}
+.foot-links{list-style:none;display:flex;flex-direction:column;gap:11px}
+.foot-links a{transition:color .2s ease}
+.foot-links a:hover{color:#fff}
+.foot-bottom{text-align:center;font-size:.82rem;color:#d8bfa2;border-top:1px solid rgba(255,255,255,.15);padding-top:22px}
+.hero-img-wrap {
+  aspect-ratio: 4/5;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(154, 76, 54, 0.18);
+}
+.hero-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Giúp ảnh không bị méo hay bóp hình */
+  display: block;
+}
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:960px){
+  .product-grid{grid-template-columns:repeat(2,1fr)}
+  .commit-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .product-grid{grid-template-columns:1fr}
+  section{padding:56px 0}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="icon-tent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 3 19h18L12 3Z"/><path d="M8.5 19 12 11l3.5 8"/></symbol>
+  <symbol id="icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+  <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="icon-sparkle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/></symbol>
+</svg>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <h1>Danh Sách Box Cắm Trại Trọn Gói</h1>
+  <p>Chọn combo phù hợp với số người và phong cách cắm trại của bạn - đầy đủ đồ dùng, sẵn sàng lên đường.</p>
+</div>
+
+<!-- BỘ LỌC + SẢN PHẨM -->
+<section class="bg-white">
+  <div class="wrap">
+    <div class="filter-head">
+      <div>
+        <span class="section-kicker">Danh mục combo</span>
+        <h2 class="section-title">Tất cả sản phẩm</h2>
+      </div>
+      <div class="filter-pills" id="filterPills">
+        <button class="pill active" data-filter="all">Tất cả</button>
+        <button class="pill" data-filter="2">1-2 người</button>
+        <button class="pill" data-filter="4">4 người</button>
+        <button class="pill" data-filter="6">6 người</button>
+        <button class="pill" data-filter="8">8 người+</button>
+      </div>
+    </div>
+    <p class="result-count" id="resultCount">8 combo</p>
+    <br>
+    <div class="product-grid" id="productGrid">
+      <div class="card" data-group="2">
+        <div class="hero-img-wrap">
+      <img src="https://plus.unsplash.com/premium_photo-1726754592337-9838092f3839?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzN8fGNhbXBpbmclMjBLSVR8ZW58MHx8MHx8fDA%3D" alt="Cắm trại cùng Glampify">
+    </div>
+        <div class="card-body">
+          <h3>Naturehike Couple Set</h3>
+          <div class="includes"><span class="chip">Lều 2 người</span><span class="chip">Túi ngủ</span></div>
+          <div class="price">690.000đ <small>/ 2N1Đ</small></div>
+          <button class="btn btn-outline">Xem chi tiết</button>
+        </div>
+      </div>
+      <div class="card" data-group="2">
+        <div class="hero-img-wrap">
+      <img src="https://plus.unsplash.com/premium_photo-1723291430835-18f62f56f445?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2FtcGluZyUyMEtJVHxlbnwwfHwwfHx8MA%3D%3D" alt="Cắm trại cùng Glampify">
+    </div>
+        <div class="card-body">
+          <h3>Solo Camping Kit</h3>
+          <div class="includes"><span class="chip">Lều 1 người</span><span class="chip">Đèn lều</span></div>
+          <div class="price">450.000đ <small>/ 2N1Đ</small></div>
+          <button class="btn btn-outline">Xem chi tiết</button>
+        </div>
+      </div>
+      <div class="card" data-group="4">
+        <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1744317287172-8ee74d6e14d9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fGNhbXBpbmclMjBLSVR8ZW58MHx8MHx8fDA%3D" alt="Cắm trại cùng Glampify">
+    </div>
+        <div class="card-body">
+          <h3>Combo Cực Chill 4 người</h3>
+          <div class="includes"><span class="chip">Lều 4 người</span><span class="chip">Bàn gấp</span></div>
+          <div class="price">1.250.000đ <small>/ 2N1Đ</small></div>
+          <button class="btn btn-outline">Xem chi tiết</button>
+        </div>
+      </div>
+      <div class="card" data-group="4">
+        <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1634805522019-e9c3c1d25e4c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fGNhbXBpbmclMjBLSVR8ZW58MHx8MHx8fDA%3D" alt="Cắm trại cùng Glampify">
+    </div>
+        <div class="card-body">
+          <h3>Glamping Cao cấp</h3>
+          <div class="includes"><span class="chip">Lều bạt lớn</span><span class="chip">Nệm hơi</span></div>
+          <div class="price">1.550.000đ <small>/ 2N1Đ</small></div>
+          <button class="btn btn-outline">Xem chi tiết</button>
+        </div>
+      </div>
+      <div class="card" data-group="6">
+        <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D" alt="Cắm trại cùng Glampify">
+    </div>
+        <div class="card-body">
+          <h3>Box Gia đình 6 người</h3>
+          <div class="includes"><span class="chip">Lều 6 người</span><span class="chip">Bếp ga</span></div>
+          <div class="price">1.890.000đ <small>/ 2N1Đ</small></div>
+          <button class="btn btn-outline">Xem chi tiết</button>
+        </div>
+      </div>
+      <div class="card" data-group="6">
+        <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D" alt="Cắm trại cùng Glampify">
+    </div>
+        <div class="card-body">
+          <h3>Combo Sinh viên nhóm 6</h3>
+          <div class="includes"><span class="chip">Lều 6 người</span><span class="chip">Ghế gấp</span></div>
+          <div class="price">1.690.000đ <small>/ 2N1Đ</small></div>
+          <button class="btn btn-outline">Xem chi tiết</button>
+        </div>
+      </div>
+      <div class="card" data-group="8">
+        <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D" alt="Cắm trại cùng Glampify">
+    </div>
+        <div class="card-body">
+          <h3>Combo Nhóm bạn 8 người</h3>
+          <div class="includes"><span class="chip">2 lều lớn</span><span class="chip">Bàn ghế</span></div>
+          <div class="price">2.590.000đ <small>/ 2N1Đ</small></div>
+          <button class="btn btn-outline">Xem chi tiết</button>
+        </div>
+      </div>
+      <div class="card" data-group="8">
+        <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D" alt="Cắm trại cùng Glampify">
+    </div>
+        <div class="card-body">
+          <h3>Box Đại Gia Đình 10 người</h3>
+          <div class="includes"><span class="chip">3 lều</span><span class="chip">Bếp đôi</span></div>
+          <div class="price">3.290.000đ <small>/ 2N1Đ</small></div>
+          <button class="btn btn-outline">Xem chi tiết</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAM KẾT -->
+<section>
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:44px">
+      <span class="section-kicker">Vì sao chọn Glampify</span>
+      <h2 class="section-title">Cam kết của chúng tôi</h2>
+    </div>
+    <div class="commit-grid">
+      <div class="commit">
+        <div class="commit-icon"><svg><use href="#icon-clock"/></svg></div>
+        <h3>Nhanh chóng, tiện lợi</h3>
+        <p>Đặt combo trong vài phút, giao nhận tận nơi tại Hà Nội, sẵn sàng lên đường trong ngày.</p>
+      </div>
+      <div class="commit">
+        <div class="commit-icon"><svg><use href="#icon-sparkle"/></svg></div>
+        <h3>Đầy đủ tiện nghi</h3>
+        <p>Từ lều, túi ngủ đến bếp và bàn ghế - mọi thứ được chuẩn bị sẵn, không cần mua sắm lích kích.</p>
+      </div>
+      <div class="commit">
+        <div class="commit-icon"><svg><use href="#icon-shield"/></svg></div>
+        <h3>Uy tín, chất lượng</h3>
+        <p>Đồ dùng được vệ sinh, kiểm tra kỹ trước mỗi lượt thuê, hỗ trợ đổi lịch miễn phí khi trời mưa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER (giống hệt trang chủ) -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><svg><use href="#icon-tent"/></svg><span class="foot-logo">Glampify</span></div>
+        <p>Mang đến trải nghiệm dã ngoại trọn vẹn và tinh tế nhất.</p>
+        <p style="margin-top:10px">79 Hồ Tùng Mậu, Hà Nội</p>
+        <p>www.glampify.com</p>
+        <p>support@glampify.com</p>
+      </div>
+      <div>
+        <h4>Chính Sách</h4>
+        <ul class="foot-links">
+          <li><a href="#">Chính sách đổi trả</a></li>
+          <li><a href="#">Chính sách bảo mật</a></li>
+          <li><a href="#">Chính sách vận chuyển</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hỗ Trợ</h4>
+        <ul class="foot-links">
+          <li><a href="#">Thuê đồ có cần cọc không?</a></li>
+          <li><a href="#">Trời mưa có được dời lịch?</a></li>
+          <li><a href="#">Hỗ trợ setup tại bãi</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 Glampify. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  const pills = document.querySelectorAll('.pill');
+  const cards = document.querySelectorAll('.card');
+  const resultCount = document.getElementById('resultCount');
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const filter = pill.dataset.filter;
+      let count = 0;
+      cards.forEach(card => {
+        const show = filter === 'all' || card.dataset.group === filter;
+        card.classList.toggle('hide', !show);
+        if(show) count++;
+      });
+      resultCount.textContent = count + ' combo';
+    });
+  });
+</script>
+</body>
+</html>

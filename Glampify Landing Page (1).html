@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Glampify - Cho thuê đồ dã ngoại</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF5EC;
+  --bg-white:#FFFFFF;
+  --terracotta:#9A4C36;
+  --terracotta-dark:#7A3B29;
+  --accent:#FF6B35;
+  --cream:#FDFBF7;
+  --text:#4A332B;
+  padding-top: env(safe-area-inset-top,0px);
+  padding-bottom: env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+h1,h2,h3{font-family:'Playfair Display',serif;color:var(--terracotta);font-weight:700}
+img,.ph{max-width:100%}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+section{padding:88px 0}
+.bg-white{background:var(--bg-white)}
+
+/* ---------- HERO (giữ nguyên) ---------- */
+.hero{
+  position:relative;min-height:85vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;
+  background:
+    linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2)),
+    url('https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=1920&auto=format&fit=crop&q=80') center/cover no-repeat;
+  padding:40px 24px;
+}
+.hero-glass{
+  max-width:760px;padding:40px;border-radius:24px;
+  background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,.15) 100%);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  border:1px solid rgba(255,255,255,.25);box-shadow:0 16px 40px rgba(0,0,0,.3);
+  animation:fadeIn 1s ease-out;
+}
+.hero-glass h1{color:#fff;font-size:clamp(2.4rem,5.5vw,4rem);line-height:1.25;margin-bottom:18px}
+.hero-glass h1 span{color:var(--accent);text-shadow:1px 1px 2px rgba(0,0,0,.8),0 4px 12px rgba(0,0,0,.6),0 0 24px rgba(0,0,0,.4)}
+.hero-glass p{font-size:clamp(1.05rem,2vw,1.25rem);color:#fdfbf7;font-weight:600;line-height:1.6;font-family:'Nunito',sans-serif}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ---------- Tiêu đề section (tinh giản hơn) ---------- */
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:16px}
+.section-title{font-size:clamp(2rem,4vw,2.6rem);color:var(--terracotta-dark);line-height:1.15}
+.section-kicker{color:var(--accent);font-weight:700;font-size:.95rem;display:block;margin-bottom:6px;font-family:'Nunito',sans-serif}
+.section-sub{max-width:520px;color:#8a6a58;font-size:1.02rem;margin-top:10px;line-height:1.6}
+.slider-nav{display:flex;gap:12px}
+.nav-btn{
+  width:46px;height:46px;border-radius:50%;border:1.5px solid #e3cdb2;background:#fff;color:var(--terracotta);
+  font-size:1.1rem;cursor:pointer;transition:.25s ease;display:flex;align-items:center;justify-content:center;
+}
+.nav-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff;transform:translateY(-2px);box-shadow:0 8px 18px rgba(255,107,53,.3)}
+
+/* ---------- SẢN PHẨM ---------- */
+.carousel{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 4px 28px;scrollbar-width:none}
+.carousel::-webkit-scrollbar{display:none}
+.card{
+  flex:0 0 275px;scroll-snap-align:start;background:var(--cream);border-radius:20px;overflow:hidden;
+  display:flex;flex-direction:column;box-shadow:0 10px 28px rgba(154,76,54,.13);
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(154,76,54,.2)}
+.card-img{
+  position:relative;aspect-ratio:4/3;
+  background:linear-gradient(150deg,var(--terracotta) 0%,#c98a5c 55%,#8fae72 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.card-img svg{width:52px;height:52px;opacity:.85}
+.tag{position:absolute;top:14px;left:14px;background:var(--accent);color:#fff;font-size:.72rem;font-weight:700;padding:6px 13px;border-radius:20px}
+.tag.new{background:var(--terracotta)}
+.card-body{padding:20px 20px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card-body h3{font-size:1.15rem;line-height:1.3}
+.includes{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:.72rem;background:#f3e3d2;color:var(--terracotta-dark);padding:4px 10px;border-radius:20px;font-weight:700}
+.price{color:var(--terracotta);font-weight:700;font-size:1.05rem;margin-top:2px}
+.price small{color:#a9887a;font-weight:600;font-size:.78rem}
+.btn{border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-weight:700;cursor:pointer;transition:transform .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-outline{margin-top:auto;background:transparent;border:1.5px solid var(--terracotta);color:var(--terracotta);padding:10px 0}
+.btn-outline:hover{background:var(--terracotta);color:#fff}
+.btn-solid{background:var(--accent);color:#fff;padding:16px 48px;font-size:1.05rem;box-shadow:0 8px 20px rgba(255,107,53,.35)}
+
+/* ---------- FORM ---------- */
+.form-section{background:var(--bg)}
+.form-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
+.form-copy .section-title{text-align:left}
+.benefit-list{list-style:none;margin-top:24px;display:flex;flex-direction:column;gap:18px}
+.benefit-list li{display:flex;gap:14px;align-items:flex-start}
+.benefit-list svg{flex:0 0 22px;width:22px;height:22px;color:var(--accent);margin-top:2px}
+.benefit-list strong{display:block;color:var(--terracotta-dark);font-size:1rem}
+.benefit-list span{color:#8a6a58;font-size:.92rem}
+.form-card{background:#fff;border-radius:24px;padding:40px;box-shadow:0 20px 48px rgba(154,76,54,.14)}
+form{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-size:.85rem;font-weight:700;color:var(--terracotta)}
+.field input{border:1.5px solid #ecdcc6;border-radius:12px;padding:13px 15px;font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text)}
+.field input:focus{outline:2px solid var(--accent);outline-offset:1px;background:#fff}
+.form-cta{grid-column:1/-1;display:flex;justify-content:center;margin-top:6px}
+
+/* ---------- ĐỊA ĐIỂM (bento) ---------- */
+.bento{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:18px;height:520px}
+.loc{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.1)}
+.loc.big{grid-row:1/3}
+.loc-img{position:absolute;inset:0;transition:transform .4s ease}
+.loc:hover .loc-img{transform:scale(1.07)}
+.loc::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65),transparent 60%)}
+.loc-label{position:absolute;bottom:18px;left:18px;z-index:2;color:#fff}
+.loc-label strong{font-family:'Playfair Display',serif;font-size:1.35rem;display:block}
+.loc.big .loc-label strong{font-size:1.7rem}
+.loc-label span{font-size:.85rem;color:#f0e2cf;font-weight:600}
+.loc1 .loc-img{background:linear-gradient(150deg,#4f6b3c,#2e3f24)}
+.loc2 .loc-img{background:linear-gradient(150deg,#7d9c6b,#3c5230)}
+.loc3 .loc-img{background:linear-gradient(150deg,#a3714a,#5c3a24)}
+.loc4 .loc-img{background:linear-gradient(150deg,#5c8a9c,#2c4d59)}
+
+/* ---------- REVIEWS ---------- */
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.review{position:relative;background:var(--cream);border-radius:20px;padding:34px 28px 28px;box-shadow:0 10px 26px rgba(154,76,54,.1);display:flex;flex-direction:column;gap:14px}
+.review::before{content:'“';position:absolute;top:8px;right:22px;font-family:'Playfair Display',serif;font-size:3.6rem;color:var(--accent);opacity:.18;line-height:1}
+.stars{color:var(--accent);letter-spacing:2px;font-size:.95rem}
+.review p{flex:1;line-height:1.65;font-size:.98rem}
+.review-foot{display:flex;align-items:center;gap:12px}
+.avatar{width:40px;height:40px;border-radius:50%;background:var(--terracotta);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700}
+.author{font-weight:700;color:var(--terracotta-dark);font-family:'Playfair Display',serif;font-size:1.02rem}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--terracotta-dark);color:#f5e9d8;padding:60px 0 28px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;margin-bottom:36px}
+.foot-brand{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.foot-brand svg{width:26px;height:26px;color:var(--accent)}
+.foot-logo{font-family:'Playfair Display',serif;font-weight:700;font-size:1.7rem;color:#fff}
+.foot-grid p,.foot-grid a{color:#f0dfc7;text-decoration:none;font-size:.94rem}
+.foot-grid h4{color:#fff;font-family:'Playfair Display',serif;margin-bottom:16px;font-size:1.15rem}
+.foot-links{list-style:none;display:flex;flex-direction:column;gap:11px}
+.foot-links a{transition:color .2s ease}
+.foot-links a:hover{color:#fff}
+.foot-bottom{text-align:center;font-size:.82rem;color:#d8bfa2;border-top:1px solid rgba(255,255,255,.15);padding-top:22px}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:960px){
+  .form-layout{grid-template-columns:1fr}
+  .bento{grid-template-columns:1fr 1fr;grid-template-rows:auto auto;height:auto}
+  .loc.big{grid-row:auto;aspect-ratio:16/9}
+  .loc{aspect-ratio:1/1}
+  .review-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  section{padding:60px 0}
+  form{grid-template-columns:1fr}
+  .form-card{padding:28px 22px}
+  .bento{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="icon-tent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 3 19h18L12 3Z"/><path d="M8.5 19 12 11l3.5 8"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12l5 5L20 6"/></symbol>
+</svg>
+
+<!-- 1. HERO BANNER (giữ nguyên) -->
+<section class="hero">
+  <div class="hero-glass">
+    <h1>Trọn vị thiên nhiên cùng <span>Glampify</span></h1>
+    <p>Thuê trọn bộ combo dã ngoại cao cấp. Việc của bạn là xách balo lên và chill!</p>
+    <button class="btn btn-solid" style="margin-top:24px;">Khám phá combo</button>
+  </div>
+</section>
+
+<!-- 2. COMBO SẢN PHẨM -->
+<section class="bg-white">
+  <div class="wrap">
+    <div class="section-header">
+      <div>
+        <span class="section-kicker">Được yêu thích nhất</span>
+        <h2 class="section-title">Combo bán chạy</h2>
+      </div>
+      <div class="slider-nav">
+        <button id="prevBtn" class="nav-btn" aria-label="Trước">&#10094;</button>
+        <button id="nextBtn" class="nav-btn" aria-label="Sau">&#10095;</button>
+      </div>
+    </div>
+
+    <div class="carousel" id="productCarousel">
+      <div class="card">
+        <div class="card-img"><span class="tag">Hot</span><svg><use href="#icon-tent"/></svg></div>
+        <div class="card-body">
+          <h3>Naturehike Couple Set</h3>
+          <div class="includes"><span class="chip">Lều 2 người</span><span class="chip">Túi ngủ</span></div>
+          <div class="price">690.000đ <small>/ 2N1Đ</small></div>
+          <button class="btn btn-outline">Xem chi tiết</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img"><span class="tag">Hot</span><svg><use href="#icon-tent"/></svg></div>
+        <div class="card-body">
+          <h3>Box Gia đình 6 người</h3>
+          <div class="includes"><span class="chip">Lều 6 người</span><span class="chip">Bếp ga</span></div>
+          <div class="price">1.890.000đ <small>/ 2N1Đ</small></div>
+          <button class="btn btn-outline">Xem chi tiết</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img"><span class="tag">Hot</span><svg><use href="#icon-tent"/></svg></div>
+        <div class="card-body">
+          <h3>Solo Camping Kit</h3>
+          <div class="includes"><span class="chip">Lều 1 người</span><span class="chip">Đèn lều</span></div>
+          <div class="price">450.000đ <small>/ 2N1Đ</small></div>
+          <button class="btn btn-outline">Xem chi tiết</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img"><span class="tag">Hot</span><svg><use href="#icon-tent"/></svg></div>
+        <div class="card-body">
+          <h3>Combo Nhóm bạn 8 người</h3>
+          <div class="includes"><span class="chip">2 lều lớn</span><span class="chip">Bàn ghế</span></div>
+          <div class="price">2.590.000đ <small>/ 2N1Đ</small></div>
+          <button class="btn btn-outline">Xem chi tiết</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img"><span class="tag new">Mới</span><svg><use href="#icon-tent"/></svg></div>
+        <div class="card-body">
+          <h3>Combo Sinh viên</h3>
+          <div class="includes"><span class="chip">Lều 2 người</span><span class="chip">Ghế gấp</span></div>
+          <div class="price">350.000đ <small>/ 2N1Đ</small></div>
+          <button class="btn btn-outline">Xem chi tiết</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img"><span class="tag new">Mới</span><svg><use href="#icon-tent"/></svg></div>
+        <div class="card-body">
+          <h3>Glamping Cao cấp</h3>
+          <div class="includes"><span class="chip">Lều bạt lớn</span><span class="chip">Nệm hơi</span></div>
+          <div class="price">1.550.000đ <small>/ 2N1Đ</small></div>
+          <button class="btn btn-outline">Xem chi tiết</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. FORM TƯ VẤN -->
+<section class="form-section">
+  <div class="wrap form-layout">
+    <div class="form-copy">
+      <span class="section-kicker">Chỉ mất 30 giây</span>
+      <h2 class="section-title">Đăng ký tư vấn miễn phí</h2>
+      <p class="section-sub">Để lại thông tin, đội ngũ Glampify sẽ gợi ý combo và điểm cắm trại phù hợp nhất với nhóm của bạn.</p>
+      <ul class="benefit-list">
+        <li><svg><use href="#icon-check"/></svg><div><strong>Tư vấn theo số người & ngân sách</strong><span>Không đau đầu chọn combo</span></div></li>
+        <li><svg><use href="#icon-check"/></svg><div><strong>Miễn phí đổi lịch khi trời mưa</strong><span>Linh hoạt, không mất phí</span></div></li>
+        <li><svg><use href="#icon-check"/></svg><div><strong>Giao nhận tận nơi tại Hà Giang</strong><span>Tiết kiệm thời gian di chuyển</span></div></li>
+      </ul>
+    </div>
+    <div class="form-card">
+      <form>
+        <div class="field"><label>Tên Của Bạn *</label><input type="text" placeholder="Nguyễn Văn A"></div>
+        <div class="field"><label>Số Điện Thoại *</label><input type="tel" placeholder="09xx xxx xxx"></div>
+        <div class="field"><label>Số Người Đi</label><input type="number" min="1" placeholder="4"></div>
+        <div class="field"><label>Ngày Đi</label><input type="date"></div>
+        <div class="field full"><label>Thông Tin Yêu Cầu</label><input type="text" placeholder="Cần thuê thêm bếp ga mini"></div>
+        <div class="form-cta"><button class="btn btn-solid" type="submit">Đăng Ký Ngay</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- 4. ĐỊA ĐIỂM -->
+<section class="bg-white">
+  <div class="wrap">
+    <div class="section-header">
+      <div>
+        <span class="section-kicker">HÀ GIANG</span>
+        <h2 class="section-title">Điểm cắm trại lý tưởng</h2>
+      </div>
+    </div>
+    <div class="bento">
+      <div class="loc big loc1">
+  <div class="loc-img" style="background: url('https://i.ibb.co/WhV1cw3/DV2-9165-1692085761-1.jpg') center/cover no-repeat;"></div>
+  <div class="loc-label"><strong>Đồng Văn</strong><span>Cao nguyên đá vôi hùng vĩ</span></div>
+</div>
+      <div class="loc loc2">
+        <div class="loc-img" style="background: url('https://i.ibb.co/5fsBSGT/rung-thong-yen-minh-1.jpg') center/cover no-repeat;"></div>
+        <div class="loc-label"><strong>Yên Minh</strong><span>Đà Lạt thu nhỏ</span></div></div>
+      <div class="loc loc3">
+        <div class="loc-img" style="background: url('https://i.ibb.co/KpZmXVGx/chinh-phuc-deo-ma-pi-leng-tu-dai-dinh-deo-cua-vung-nui-dat-bac-1642065331-1.jpg') center/cover no-repeat;"></div>
+        <div class="loc-label"><strong>Mèo Vạc</strong><span>Đèo Mã Pì Lèng: Một trong "Tứ đại đỉnh đèo"</span></div></div>
+      <div class="loc loc4">
+        <div class="loc-img" style="background: url('https://i.ibb.co/p6kz7qt8/mua-xuan-o-thung-lung-sung-la.jpg') center/cover no-repeat;"></div>
+        <div class="loc-label"><strong>Sủng Là</strong><span>Đóa hoa giữa cao nguyên đá</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. REVIEW -->
+<section>
+  <div class="wrap">
+    <div class="section-header">
+      <div>
+        <span class="section-kicker">Cảm nhận thực tế</span>
+        <h2 class="section-title">Khách hàng nói gì?</h2>
+      </div>
+    </div>
+    <div class="review-grid">
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>Lều Naturehike còn rất mới và sạch sẽ, thơm mùi nắng chứ không bị mốc. Nhóm mình 4 người thuê Box Cực Chill setup cực nhàn.</p>
+        <div class="review-foot"><div class="avatar">M</div><div class="author">Minh Tuấn</div></div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>Bạn nhân viên tư vấn siêu nhiệt tình, pack đồ cực gọn gàng vào 1 thùng hardshell. Mình chở bằng xe máy vẫn rất ok.</p>
+        <div class="review-foot"><div class="avatar">P</div><div class="author">Phương Ly</div></div>
+      </div>
+      <div class="review">
+        <div class="stars">★★★★★</div>
+        <p>Thích nhất là chính sách dời lịch khi trời mưa. Tuần trước báo bão bên Glampify hỗ trợ chuyển lịch free luôn. 10 điểm uy tín!</p>
+        <div class="review-foot"><div class="avatar">H</div><div class="author">Hoàng Bách</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><svg><use href="#icon-tent"/></svg><span class="foot-logo">Glampify</span></div>
+        <p>Mang đến trải nghiệm dã ngoại trọn vẹn và tinh tế nhất.</p>
+        <p style="margin-top:10px">79 Hồ Tùng Mậu, Hà Nội</p>
+        <p>www.glampify.com</p>
+        <p>support@glampify.com</p>
+      </div>
+      <div>
+        <h4>Chính Sách</h4>
+        <ul class="foot-links">
+          <li><a href="#">Chính sách đổi trả</a></li>
+          <li><a href="#">Chính sách bảo mật</a></li>
+          <li><a href="#">Chính sách vận chuyển</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hỗ Trợ</h4>
+        <ul class="foot-links">
+          <li><a href="#">Thuê đồ có cần cọc không?</a></li>
+          <li><a href="#">Trời mưa có được dời lịch?</a></li>
+          <li><a href="#">Hỗ trợ setup tại bãi</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 Glampify. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  const carousel = document.getElementById('productCarousel');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  if(prevBtn && nextBtn && carousel){
+    prevBtn.addEventListener('click', () => carousel.scrollBy({left:-300,behavior:'smooth'}));
+    nextBtn.addEventListener('click', () => carousel.scrollBy({left:300,behavior:'smooth'}));
+  }
+</script>
+</body>
+</html>

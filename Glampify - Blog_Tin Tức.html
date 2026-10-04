@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Blog / Tin Tức - Glampify</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF5EC;
+  --bg-white:#FFFFFF;
+  --terracotta:#9A4C36;
+  --terracotta-dark:#7A3B29;
+  --accent:#FF6B35;
+  --cream:#FDFBF7;
+  --text:#4A332B;
+  padding-top: env(safe-area-inset-top,0px);
+  padding-bottom: env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+h1,h2,h3{font-family:'Playfair Display',serif;color:var(--terracotta);font-weight:700}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+section{padding:72px 0}
+.bg-white{background:var(--bg-white)}
+.section-kicker{color:var(--accent);font-weight:700;font-size:.95rem;display:block;margin-bottom:6px}
+.section-title{font-size:clamp(2rem,4vw,2.6rem);color:var(--terracotta-dark);line-height:1.15}
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:44px}
+.more-link{display:flex;align-items:center;gap:6px;color:var(--terracotta);font-weight:700;text-decoration:none;border-bottom:2px solid transparent;padding-bottom:2px;transition:.2s ease}
+.more-link:hover{color:var(--accent);border-color:var(--accent)}
+.more-link svg{width:16px;height:16px}
+.tag{display:inline-block;background:var(--accent);color:#fff;font-size:.72rem;font-weight:700;padding:6px 14px;border-radius:20px}
+.btn{border:none;border-radius:12px;font-family:'Nunito',sans-serif;font-weight:700;cursor:pointer;transition:transform .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-solid{background:var(--accent);color:#fff;padding:15px 34px;font-size:1rem;box-shadow:0 8px 20px rgba(255,107,53,.35);display:inline-flex;align-items:center;gap:10px}
+.btn-solid svg{width:18px;height:18px}
+
+/* ---------- HERO BÀI VIẾT TIÊU ĐIỂM ---------- */
+.hero-blog{padding:56px 0}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.hero-img{
+  aspect-ratio:4/3;border-radius:22px;overflow:hidden;
+  background:linear-gradient(150deg,var(--terracotta) 0%,#c98a5c 55%,#8fae72 100%);
+  display:flex;align-items:center;justify-content:center;box-shadow:0 16px 40px rgba(154,76,54,.18);
+}
+.hero-img svg{width:70px;height:70px;color:#fff;opacity:.85}
+.hero-copy .tag{margin-bottom:18px}
+.hero-copy h1{font-size:clamp(1.9rem,3.6vw,2.6rem);line-height:1.25;margin-bottom:18px}
+.hero-copy p{color:#8a6a58;font-size:1.02rem;line-height:1.7;margin-bottom:26px;max-width:520px}
+
+/* ---------- FEATURED GRID ---------- */
+.post-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.post-card{background:var(--cream);border-radius:20px;overflow:hidden;box-shadow:0 10px 28px rgba(154,76,54,.12);transition:transform .3s ease,box-shadow .3s ease}
+.post-card:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(154,76,54,.2)}
+.post-thumb{
+  aspect-ratio:4/3;
+  background:linear-gradient(150deg,var(--terracotta) 0%,#c98a5c 55%,#8fae72 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.post-thumb svg{width:44px;height:44px;color:#fff;opacity:.85}
+.post-body{padding:20px 20px 24px}
+.post-body span{color:var(--accent);font-weight:700;font-size:.78rem}
+.post-body h3{
+  font-size:1.08rem;line-height:1.4;margin-top:8px;color:var(--text);font-family:'Nunito',sans-serif;font-weight:700;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+
+/* ---------- TIN TỨC (SLIDER 3 THẺ) ---------- */
+.slider-wrap{display:flex;align-items:center;gap:14px}
+.nav-btn{
+  flex:0 0 46px;width:46px;height:46px;border-radius:50%;border:1.5px solid #e3cdb2;background:#fff;color:var(--terracotta);
+  font-size:1.1rem;cursor:pointer;transition:.25s ease;display:flex;align-items:center;justify-content:center;
+}
+.nav-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 8px 18px rgba(255,107,53,.3)}
+.news-track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;flex:1}
+.news-track::-webkit-scrollbar{display:none}
+.news-card{
+  flex:0 0 calc((100% - 48px)/3);scroll-snap-align:start;background:var(--cream);border-radius:20px;overflow:hidden;
+  box-shadow:0 10px 26px rgba(154,76,54,.12);transition:transform .3s ease;
+}
+.news-card:hover{transform:translateY(-5px)}
+.news-thumb{
+  aspect-ratio:16/10;
+  background:linear-gradient(150deg,#c98a5c 0%,var(--terracotta) 55%,#5c8a9c 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.news-thumb svg{width:40px;height:40px;color:#fff;opacity:.85}
+.news-body{padding:18px 20px 22px}
+.news-body h3{font-size:1rem;line-height:1.4;color:var(--text);font-family:'Nunito',sans-serif;font-weight:700}
+
+/* ---------- FOOTER (giống hệt trang chủ / sản phẩm) ---------- */
+footer{background:var(--terracotta-dark);color:#f5e9d8;padding:60px 0 28px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;margin-bottom:36px}
+.foot-brand{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.foot-brand svg{width:26px;height:26px;color:var(--accent)}
+.foot-logo{font-family:'Playfair Display',serif;font-weight:700;font-size:1.7rem;color:#fff}
+.foot-grid p,.foot-grid a{color:#f0dfc7;text-decoration:none;font-size:.94rem}
+.foot-grid h4{color:#fff;font-family:'Playfair Display',serif;margin-bottom:16px;font-size:1.15rem}
+.foot-links{list-style:none;display:flex;flex-direction:column;gap:11px}
+.foot-links a{transition:color .2s ease}
+.foot-links a:hover{color:#fff}
+.foot-bottom{text-align:center;font-size:.82rem;color:#d8bfa2;border-top:1px solid rgba(255,255,255,.15);padding-top:22px}
+
+.form-section{background:var(--bg-white)}
+.form-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
+.form-copy .section-title{text-align:left}
+.benefit-list{list-style:none;margin-top:24px;display:flex;flex-direction:column;gap:18px}
+.benefit-list li{display:flex;gap:14px;align-items:flex-start}
+.benefit-list svg{flex:0 0 22px;width:22px;height:22px;color:var(--accent);margin-top:2px}
+.benefit-list strong{display:block;color:var(--terracotta-dark);font-size:1rem}
+.benefit-list span{color:#8a6a58;font-size:.92rem}
+.form-card{background:var(--cream);border-radius:24px;padding:40px;box-shadow:0 20px 48px rgba(154,76,54,.14)}
+form{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-size:.85rem;font-weight:700;color:var(--terracotta)}
+.field input{border:1.5px solid #ecdcc6;border-radius:12px;padding:13px 15px;font-family:'Nunito',sans-serif;background:#ffffff;color:var(--text)}
+.field input:focus{outline:2px solid var(--accent);outline-offset:1px;background:#fff}
+.form-cta{grid-column:1/-1;display:flex;justify-content:center;margin-top:6px}
+.hero-img-wrap {
+  aspect-ratio: 4/3;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(154, 76, 54, 0.18);
+}
+.hero-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Giúp ảnh không bị méo hay bóp hình */
+  display: block;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .post-grid{grid-template-columns:1fr 1fr}
+  .news-card{flex-basis:calc((100% - 24px)/2)}
+  .foot-grid{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  section{padding:52px 0}
+  .post-grid{grid-template-columns:1fr}
+  .news-card{flex-basis:80%}
+  .nav-btn{display:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="icon-tent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3 3 19h18L12 3Z"/><path d="M8.5 19 12 11l3.5 8"/></symbol>
+  <symbol id="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
+
+<!-- 1. HERO BÀI VIẾT TIÊU ĐIỂM -->
+<section class="hero-blog">
+  <div class="wrap hero-grid">
+    <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D" alt="Cắm trại cùng Glampify">
+    </div>
+    <div class="hero-copy">
+      <span class="tag">Dự án</span>
+      <h1>Glampify mở rộng điểm giao nhận tại 3 quận nội thành Hà Nội</h1>
+      <p>Từ tháng này, khách hàng có thể nhận và trả đồ cắm trại ngay trong ngày tại các điểm giao nhận mới, rút ngắn thời gian chờ và giúp hành trình xách balo lên và đi trở nên dễ dàng hơn bao giờ hết.</p>
+      <button class="btn btn-solid">Đọc thêm <svg><use href="#icon-arrow"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- 2. BÀI VIẾT NỔI BẬT -->
+<section class="bg-white">
+  <div class="wrap">
+    <div class="section-header">
+      <div>
+        <span class="section-kicker">Cẩm nang dã ngoại</span>
+        <h2 class="section-title">Bài Viết Nổi Bật</h2>
+      </div>
+    </div>
+    <div class="post-grid">
+      <div class="post-card">
+        <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D" alt="Cắm trại cùng Glampify">
+    </div>
+        <div class="post-body">
+          <span>Kinh nghiệm</span>
+          <h3>5 điểm cắm trại gần Hà Nội đẹp nhất mùa thu năm nay mà bạn không nên bỏ lỡ</h3>
+        </div>
+      </div>
+      <div class="post-card">
+        <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1525811902-f2342640856e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D" alt="Cắm trại cùng Glampify">
+    </div>
+        <div class="post-body">
+          <span>Hướng dẫn</span>
+          <h3>Checklist đồ dùng cần mang khi đi glamping cùng gia đình có trẻ nhỏ</h3>
+        </div>
+      </div>
+      <div class="post-card">
+        <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1508873696983-2dfd5898f08b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D" alt="Cắm trại cùng Glampify">
+    </div>
+        <div class="post-body">
+          <span>Mẹo hay</span>
+          <h3>Cách dựng lều nhanh trong 5 phút, ngay cả khi bạn là người mới bắt đầu</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. TIN TỨC -->
+<section>
+  <div class="wrap">
+    <div class="section-header">
+      <div>
+        <span class="section-kicker">Cập nhật mới</span>
+        <h2 class="section-title">Tin Tức</h2>
+      </div>
+      <a class="more-link" href="#">Xem thêm <svg><use href="#icon-arrow"/></svg></a>
+    </div>
+    <div class="slider-wrap">
+      <button id="prevBtn" class="nav-btn" aria-label="Trước">&#10094;</button>
+      <div class="news-track" id="newsTrack">
+        <div class="news-card">
+          <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1534880606858-29b0e8a24e8d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzF8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D" alt="Cắm trại cùng Glampify">
+    </div>
+          <div class="news-body"><h3>Glampify hợp tác cùng khu du lịch Đồng Mô ra mắt combo cắm trại ven hồ</h3></div>
+        </div>
+        <div class="news-card">
+          <div class="hero-img-wrap">
+      <img src="https://plus.unsplash.com/premium_photo-1681885086214-c8e076b46956?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTJ8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D" alt="Cắm trại cùng Glampify">
+    </div>
+          <div class="news-body"><h3>Chính sách đổi lịch miễn phí khi trời mưa chính thức áp dụng toàn hệ thống</h3></div>
+        </div>
+        <div class="news-card">
+          <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D" alt="Cắm trại cùng Glampify">
+    </div>
+          <div class="news-body"><h3>Glampify lọt top combo dã ngoại được yêu thích nhất năm 2026</h3></div>
+        </div>
+        <div class="news-card">
+          <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1533414417583-f0ab99151186?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NTR8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D" alt="Cắm trại cùng Glampify">
+    </div>
+          <div class="news-body"><h3>Ra mắt bộ sưu tập lều Naturehike phiên bản giới hạn màu đất nung</h3></div>
+        </div>
+        <div class="news-card">
+          <div class="hero-img-wrap">
+      <img src="https://images.unsplash.com/photo-1476041800959-2f6bb412c8ce?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjF8fGNhbXBpbmd8ZW58MHx8MHx8fDA%3D" alt="Cắm trại cùng Glampify">
+    </div>    
+          <div class="news-body"><h3>Hướng dẫn đặt combo online chỉ trong 3 bước đơn giản cho người mới</h3></div>
+        </div>
+      </div>
+      <button id="nextBtn" class="nav-btn" aria-label="Sau">&#10095;</button>
+    </div>
+  </div>
+</section>
+<section class="form-section">
+  <div class="wrap form-layout">
+    <div class="form-copy">
+      <span class="section-kicker">Chỉ mất 30 giây</span>
+      <h2 class="section-title">Đăng ký tư vấn miễn phí</h2>
+      <p class="section-sub">Để lại thông tin, đội ngũ Glampify sẽ gợi ý combo và điểm cắm trại phù hợp nhất với nhóm của bạn.</p>
+      <ul class="benefit-list">
+        <li><svg><use href="#icon-check"/></svg><div><strong>Tư vấn theo số người & ngân sách</strong><span>Không đau đầu chọn combo</span></div></li>
+        <li><svg><use href="#icon-check"/></svg><div><strong>Miễn phí đổi lịch khi trời mưa</strong><span>Linh hoạt, không mất phí</span></div></li>
+        <li><svg><use href="#icon-check"/></svg><div><strong>Giao nhận tận nơi tại Hà Giang</strong><span>Tiết kiệm thời gian di chuyển</span></div></li>
+      </ul>
+    </div>
+    <div class="form-card">
+      <form>
+        <div class="field"><label>Tên Của Bạn *</label><input type="text" placeholder="Nguyễn Văn A"></div>
+        <div class="field"><label>Số Điện Thoại *</label><input type="tel" placeholder="09xx xxx xxx"></div>
+        <div class="field"><label>Số Người Đi</label><input type="number" min="1" placeholder="4"></div>
+        <div class="field"><label>Ngày Đi</label><input type="date"></div>
+        <div class="field full"><label>Thông Tin Yêu Cầu</label><input type="text" placeholder="Cần thuê thêm bếp ga mini"></div>
+        <div class="form-cta"><button class="btn btn-solid" type="submit">Đăng Ký Ngay</button></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><svg><use href="#icon-tent"/></svg><span class="foot-logo">Glampify</span></div>
+        <p>Mang đến trải nghiệm dã ngoại trọn vẹn và tinh tế nhất.</p>
+        <p style="margin-top:10px">79 Hồ Tùng Mậu, Hà Nội</p>
+        <p>www.glampify.com</p>
+        <p>support@glampify.com</p>
+      </div>
+      <div>
+        <h4>Chính Sách</h4>
+        <ul class="foot-links">
+          <li><a href="#">Chính sách đổi trả</a></li>
+          <li><a href="#">Chính sách bảo mật</a></li>
+          <li><a href="#">Chính sách vận chuyển</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Hỗ Trợ</h4>
+        <ul class="foot-links">
+          <li><a href="#">Thuê đồ có cần cọc không?</a></li>
+          <li><a href="#">Trời mưa có được dời lịch?</a></li>
+          <li><a href="#">Hỗ trợ setup tại bãi</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 Glampify. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  const track = document.getElementById('newsTrack');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  if(track && prevBtn && nextBtn){
+    prevBtn.addEventListener('click', () => {
+      const card = track.querySelector('.news-card');
+      track.scrollBy({left: -(card.offsetWidth + 24), behavior: 'smooth'});
+    });
+    nextBtn.addEventListener('click', () => {
+      const card = track.querySelector('.news-card');
+      track.scrollBy({left: card.offsetWidth + 24, behavior: 'smooth'});
+    });
+  }
+</script>
+</body>
+</html>
